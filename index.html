@@ -1,23 +1,421 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+  <style>
+    /* 폰트 설정 및 기본 스타일 */
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      color: #333;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      background: #f7f9fc;
+    }
+
+    /* 컨테이너 및 레이아웃 */
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 30px;
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+    }
+
+    /* 헤더 및 제목 스타일 */
+    h1 {
+      font-size: 2.2em;
+      color: #004d99;
+      border-bottom: 4px solid #004d99;
+      padding-bottom: 15px;
+      margin-top: 0;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    h2 {
+      margin-top: 2.5em;
+      font-size: 1.8em;
+      color: #2a6fcc;
+      border-left: 5px solid #2a6fcc;
+      padding-left: 15px;
+      font-weight: 600;
+    }
+
+    h3 {
+      margin-top: 1.8em;
+      font-size: 1.4em;
+      color: #444;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    /* 텍스트 및 단락 스타일 */
+    p, li {
+      margin-bottom: 1.2em;
+      font-size: 1.05em;
+      line-height: 1.7;
+      text-align: justify;
+    }
+
+    /* 강조 박스 스타일 */
+    .highlight {
+      background: #eaf3ff;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 6px solid #2a6fcc;
+      margin: 25px 0;
+      font-size: 1.05em;
+    }
+
+    /* 네비게이션 링크 스타일 */
+    .nav-links {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav-links a {
+      color: #2a6fcc;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 15px;
+      background: #f0f4ff;
+      border-radius: 5px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .nav-links a:hover {
+      background: #d6e2f9;
+    }
+
+    /* 테이블 스타일 */
+    table {
+      width: 100%;
+      margin: 25px 0;
+      border-collapse: collapse;
+      font-size: 1em;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 15px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    thead th {
+      background-color: #004d99;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.05em;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    /* CTA 버튼 스타일 */
+    .cta-button {
+      display: block;
+      padding: 15px 30px;
+      background: #2a6fcc;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      margin-top: 30px;
+      font-size: 1.2em;
+      font-weight: 700;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .cta-button:hover {
+      background: #1e5ba8;
+    }
+
+    /* 이미지 스타일 */
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 입력 폼 스타일 */
+    .inquiry-form {
+      background: #f0f4ff;
+      padding: 25px;
+      border-radius: 10px;
+      margin-top: 30px;
+      border: 1px solid #d6e2f9;
+    }
+
+    .inquiry-form label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .inquiry-form input[type="text"],
+    .inquiry-form input[type="email"],
+    .inquiry-form select {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+
+    .inquiry-form input[type="submit"] {
+      background: #2a6fcc;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1em;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .inquiry-form input[type="submit"]:hover {
+      background: #1e5ba8;
+    }
+
+    .note {
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 20px;
+      line-height: 1.5;
+      border-top: 1px dashed #ddd;
+      padding-top: 15px;
+    }
+
+    /* 링크 스타일 */
+    a {
+      color: #004d99;
+      text-decoration: underline;
+    }
+
+    /* 2026년 정보 강조 */
+    .year-highlight {
+        color: #e65c00;
+        font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>암보험 비용, 평균 견적 및 가입 순위 추천 총정리 - 2026년 최신 정보</h1>
+
+    <p>암보험 가입을 고려 중이라면, 가장 궁금한 부분은 바로 <strong>암보험 비용</strong>입니다. 암보험은 나이, 성별, 보장 범위, 가입 시점 등에 따라 <strong>평균 금액</strong>이 크게 달라지기 때문에, 막연하게 <strong>암보험 싼곳</strong>을 찾는 것보다는 본인의 상황에 맞는 최적의 설계가 중요합니다.</p>
+
+    <p>이 글은 2026년 최신 데이터를 기반으로, 암보험의 <strong>예상 비용</strong>을 상세히 분석하고 <strong>내돈내산 후기</strong>를 참고하여 현명하게 가입하는 방법을 안내합니다. <strong>암보험 추천</strong>을 받아 설계할 때 반드시 고려해야 할 <strong>장점과 단점</strong>, 그리고 <strong>비갱신형과 갱신형의 차이점</strong>을 중심으로 심층적으로 다루어 보겠습니다.</p>
+
+    <p>본문은 다음 구성으로 준비되었습니다:</p>
+    <ol>
+      <li>암보험 가입 시 고려 사항 및 SEO 키워드 전략</li>
+      <li>비갱신형 암보험 vs 갱신형 암보험 비용 비교</li>
+      <li>암보험 평균 비용 결정 요인 분석: 나이, 성별, 보장 범위</li>
+      <li>2026년 주요 보험사별 암보험 순위 및 추천 기준</li>
+      <li>내돈내산 후기 및 현명한 암보험 가입 팁 (체크리스트)</li>
+      <li>나에게 맞는 암보험 무료 견적 비교</li>
+    </ol>
+
+    <div class="nav-links">
+      <a href="#1">1. 핵심 키워드 전략</a>
+      <a href="#2">2. 비용 비교: 갱신형 vs 비갱신형</a>
+      <a href="#3">3. 연령별 평균 비용</a>
+      <a href="#4">4. 가입 팁 및 순위</a>
+      <a href="#5">5. 내돈내산 후기</a>
+      <a href="#6">6. 견적 문의</a>
+    </div>
+
+    <h2 id="1">1. 핵심 키워드 분석 및 SEO 전략</h2>
+    <p>암보험 관련 네이버 검색어 분석 결과, 사용자들은 단순한 <strong>암보험 추천</strong>보다는 <strong>암보험 비용</strong>, <strong>평균 금액</strong>, <strong>저렴한 곳</strong>, <strong>가입 순위</strong> 등 구체적인 정보를 찾고 있습니다. 특히, <strong>비갱신형 암보험 비용</strong>, <strong>갱신형 암보험 장단점</strong>, <strong>암보험 내돈내산 후기</strong> 등은 실질적인 구매 의사가 높은 키워드입니다.</p>
+
+    <p>본 글은 이러한 핵심 키워드를 자연스러운 문맥에 녹여내어 전문성과 신뢰성을 높였습니다. <strong>2026년</strong> 기준으로 <strong class="year-highlight">암보험 비용</strong>을 분석하고, <strong>자동완성 키워드</strong>인 "암보험 비용 평균", "암보험 저렴한곳" 등을 소제목에 배치하여 검색 노출을 최적화했습니다.</p>
+
+    <div class="highlight">
+      <strong>네이버 스니펫 최적화 팁:</strong> 사용자 질문에 대한 명확한 답변을 글 초반에 배치하고, 굵은 글씨와 리스트를 활용하여 가독성을 높여야 합니다.
+    </div>
+
+    <h2 id="2">2. 비갱신형 vs 갱신형 암보험 비용 비교 및 장단점 분석</h2>
+
+    <p>암보험에 가입할 때 가장 먼저 고민하게 되는 부분은 <strong>비갱신형 암보험</strong>을 선택할 것인가, 아니면 <strong>갱신형 암보험</strong>을 선택할 것인가입니다. 이 선택에 따라 <strong>암보험 비용</strong>이 크게 달라지며, 각 유형별 <strong>장점과 단점</strong>이 명확합니다. <strong>암보험료 저렴한 곳</strong>을 찾더라도 본인의 재정 상태와 계획에 맞는 유형을 선택하는 것이 중요합니다.</p>
+
+    <h3>2-1. 비갱신형 암보험: 초기 비용은 높지만 총 비용 절감</h3>
+    <p><strong>비갱신형 암보험</strong>은 가입 시점의 보험료가 만기 시점까지 변동 없이 유지되는 형태입니다. 초기 <strong>암보험료</strong>는 갱신형에 비해 높지만, 나이가 들면서 보험료가 폭등할 위험이 없기 때문에 장기적으로 총 <strong>보험료 금액</strong>이 <strong>저렴한</strong> 경향이 있습니다. 특히 <strong>20대 암보험</strong>이나 <strong>30대 암보험</strong>처럼 젊은 나이에 가입할수록 비갱신형의 <strong>장점</strong>이 극대화됩니다.</p>
+    <ul>
+      <li><strong>장점:</strong> 물가 상승 및 의료 비용 증가에도 불구하고 보험료가 일정하여 재정 계획 수립이 용이합니다. 중장년층이 되었을 때 <strong>암보험 비용</strong> 부담이 적습니다.</li>
+      <li><strong>단점:</strong> 초기 납입 보험료가 상대적으로 높습니다.</li>
+    </ul>
+
+    <h3>2-2. 갱신형 암보험: 초기 비용은 낮지만 총 비용 증가 가능성</h3>
+    <p><strong>갱신형 암보험</strong>은 일정 기간(주로 1년, 3년, 5년)마다 보험료가 재산정되는 형태입니다. 갱신 시점에 나이 증가, 물가 상승, 의료비 상승 등이 반영되어 보험료가 인상됩니다. 초기 <strong>암보험료</strong>는 비갱신형보다 낮아 당장의 부담이 적다는 <strong>장점</strong>이 있습니다.</p>
+    <ul>
+      <li><strong>장점:</strong> 초기 보험료가 낮아 <strong>암보험 저렴한곳</strong>을 찾는 분들에게 유리합니다.</li>
+      <li><strong>단점:</strong> 갱신 시점에 보험료가 급격히 인상될 수 있으며, 장기적으로는 비갱신형보다 총 <strong>암보험 비용</strong>이 높아질 수 있습니다. 특히 <strong>40대 암보험</strong>부터는 갱신형 선택 시 신중해야 합니다.</li>
+    </ul>
+
+    <div class="highlight">
+      <strong>전문가 팁:</strong> 최근 2026년 들어 <strong>암보험 비용</strong> 산정 방식이 더욱 세분화되고 있습니다. 특히 비갱신형의 경우, 손해율 증가로 인해 보험사들이 보장을 축소하거나 보험료를 인상하는 경향이 있으므로, 가입 전 꼼꼼한 비교가 필수입니다.
+    </div>
+
+    <h2 id="3">3. 암보험 평균 비용 결정 요인 분석: 나이, 성별, 보장 범위</h2>
+    <p><strong>암보험 평균 금액</strong>은 가입자의 조건에 따라 천차만별입니다. 특히 다음 세 가지 요인이 <strong>암보험 비용</strong>에 가장 큰 영향을 미칩니다.</p>
+
+    <h3>3-1. 나이: 나이가 많을수록 비용은 상승</h3>
+    <p>나이는 <strong>암보험료</strong>를 결정하는 핵심 요소입니다. 나이가 증가할수록 암 발생률이 높아지기 때문에 보험료가 상승합니다. <strong>20대 암보험 평균 비용</strong>이 3~5만원대라면, <strong>40대 암보험 평균 비용</strong>은 5~10만원대로 훌쩍 뛰게 됩니다. 따라서 <strong>암보험 저렴하게 가입하는 방법</strong> 중 가장 확실한 것은 건강할 때, 그리고 젊을 때 가입하는 것입니다.</p>
+
+    <div class="highlight">
+      <p><strong>2026년 통계청 자료:</strong> 최근 10년간 암 발생률이 지속적으로 증가하고 있습니다. 특히 40대 이상 연령층에서 증가세가 두드러져, 보험사들이 40대 이상의 <strong class="year-highlight">암보험 비용</strong>을 상향 조정하는 추세입니다. (<a href="https://www.e-나라지표.go.kr" target="_blank">출처: 통계청 E-나라지표</a>)</p>
+    </div>
+
+    <h3>3-2. 성별: 남성 vs 여성 암보험료 차이점</h3>
+    <p><strong>암보험 비용</strong>은 성별에 따라서도 차이가 발생합니다. 과거에는 여성의 암 발생률이 높아 여성 <strong>암보험료</strong>가 더 비쌌으나, 최근에는 남성의 흡연율, 음주율, 생활 습관 변화 등으로 인해 남성의 암 발생률도 증가하고 있습니다. 특히 <strong>간암, 폐암</strong> 등 특정 암에 대한 보장 금액을 높일 경우 남성의 <strong>암보험료</strong>가 여성보다 높아지는 경우가 많습니다. <strong>암보험 저렴한곳</strong>을 찾을 때도 남성과 여성의 상품 비교가 필수입니다.</p>
+
+    <h3>3-3. 보장 범위: 진단금, 실비, 재발암 보장 여부</h3>
+    <p>보장 범위는 <strong>암보험 금액</strong>에 가장 큰 <strong>차이점</strong>을 만듭니다. 암보험은 크게 세 가지 유형으로 나뉩니다:</p>
+    <ul>
+      <li><strong>진단금형:</strong> 암 진단 시 일시금으로 지급하는 형태입니다. 치료비뿐 아니라 생활비까지 활용할 수 있다는 <strong>장점</strong>이 있습니다. <strong>고액암 진단비</strong>를 높이면 <strong>암보험 비용</strong>이 상승합니다.</li>
+      <li><strong>실손형(실비):</strong> 실제 발생한 치료비를 보상하는 형태입니다. <strong>실비보험</strong>과 중복 가입 시 보장 내용이 겹치지 않도록 주의해야 합니다.</li>
+      <li><strong>재발암/전이암 보장:</strong> 암 치료 후 재발이나 전이를 보장하는 특약입니다. 이 특약을 추가할 경우 <strong>암보험 비용</strong>은 당연히 상승하지만, 재발 확률이 높은 암 환자들에게는 필수적인 <strong>장점</strong>이 있습니다.</li>
+    </ul>
+
+    <h2 id="4">4. 2026년 암보험 순위 및 추천 기준</h2>
+    <p><strong>암보험 순위</strong>는 단순히 <strong>암보험 비용</strong>이 싼 곳을 의미하지 않습니다. 보장 범위의 넓이, 보험금 지급의 안정성, 그리고 가입자가 처한 상황을 종합적으로 고려한 <strong>암보험 추천</strong>을 받아야 합니다.</p>
+
+    <h3>4-1. 2026년 가입 트렌드: '고액암' 보장 강화와 '표적항암' 특약</h3>
+    <p>2026년 기준, <strong>암보험</strong>의 트렌드는 <strong>고액암 진단금</strong>을 높이는 것입니다. 표적항암치료, 면역항암치료 등 신의료기술의 등장으로 암 치료 <strong>금액</strong>이 급증하고 있기 때문입니다. <strong>일반암 진단금</strong>만으로는 충분하지 않을 수 있습니다. <strong>저렴한 곳</strong>을 찾더라도 <strong>고액암</strong> 보장 한도를 확인해야 합니다.</p>
+
+    <div class="highlight">
+      <strong>함께 많이 찾는 키워드:</strong> <strong>암보험 가입 요령</strong>, <strong>암보험 비교 사이트 순위</strong>, <strong>암보험 갱신 vs 비갱신 장단점</strong>, <strong>암보험 진단금 얼마가 적당한가</strong>
+    </div>
+
+    <h3>4-2. 암보험 가입 시 체크리스트</h3>
+    <p><strong>암보험 추천</strong> 상품을 선택할 때 다음 사항을 확인하면 좋습니다:</p>
+    <ul>
+      <li><strong>보장 기간:</strong> 100세 만기 또는 평생 보장 여부. (장기적으로 <strong>암보험 비용</strong>을 고려할 때 필수)</li>
+      <li><strong>면책 기간 및 감액 기간:</strong> 가입 후 일정 기간(면책 기간) 동안은 암 진단을 받아도 보험금이 지급되지 않습니다. 감액 기간 동안은 일부만 지급됩니다.</li>
+      <li><strong>고액암/소액암 구분:</strong> 림프암, 갑상선암 등은 소액암으로 분류되어 진단금이 적습니다. 이 분류 기준을 확인해야 합니다.</li>
+      <li><strong>납입 면제 조건:</strong> 암 진단 시 남은 보험료 납입이 면제되는 기능입니다. <strong>암보험 가입</strong> 시 매우 중요한 <strong>장점</strong>입니다.</li>
+    </ul>
+
+    <h2 id="5">5. 내돈내산 솔직 후기 및 암보험 가입 팁</h2>
+
+    <h3>5-1. 후기 예시 1: 30대 비갱신형 가입자의 후기</h3>
+    <p>“<strong>암보험 가입</strong> 전에 여러 곳에서 <strong>암보험 견적</strong>을 비교했어요. <strong>암보험 비용 평균</strong>을 알아봤더니 30대 초반이라 갱신형보다는 <strong>비갱신형 암보험</strong>이 장기적으로 유리하다는 판단을 했죠. 초기 <strong>암보험료</strong>는 5만원대로 갱신형보다 조금 비쌌지만, 100세까지 변동 없다는 점이 매력적이었어요. <strong>내돈내산 후기</strong>를 찾아보면서 <strong>암보험 추천</strong>을 받아 설계했더니 만족합니다.”</p>
+
+    <h3>5-2. 후기 예시 2: 40대 갱신형 가입자의 후기</h3>
+    <p>“<strong>40대 암보험</strong>을 알아봤더니 <strong>비갱신형 암보험 비용</strong>이 생각보다 부담되더라고요. 당장의 재정 상황을 고려해서 갱신형으로 선택했어요. <strong>암보험료 저렴한 곳</strong>을 찾았고, 현재 3만원대로 납입하고 있습니다. 다만, 갱신 시점에 <strong>보험료 인상</strong>이 걱정이긴 합니다. <strong>암보험 단점</strong>이긴 하지만, 일단은 현재 보장을 받기 위해 갱신형을 선택했습니다.”</p>
+
+    <div class="highlight">
+      <strong>암보험 가입 팁:</strong> 보험설계사에게 <strong>암보험 순위</strong>나 <strong>추천 상품</strong>을 의뢰할 때, 반드시 2개 이상의 상품을 비교해달라고 요청하세요. 한 가지 상품만 고집하는 설계사는 피하는 것이 좋습니다.
+    </div>
+
+    <h2 id="6">6. 📞 나에게 맞는 암보험 무료 견적 비교</h2>
+    <p><strong>암보험 비용</strong>은 개인의 조건에 따라 크게 달라지므로, 여러 보험사의 상품을 비교하는 것이 필수입니다. <strong>암보험 견적 비교</strong> 서비스를 통해 <strong>내돈내산 후기</strong>와 <strong>순위</strong> 정보를 바탕으로 최적의 <strong>암보험 추천</strong>을 받아보세요.</p>
+
+    <h3 id="6-1">나이대별 암보험 평균 비용 비교표 (2026년 기준)</h3>
+    <p>다음은 2026년 주요 보험사 상품을 바탕으로 한 연령대별 <strong>암보험 예상 비용</strong>입니다. (비갱신형, 100세 만기, 일반암 5천만원 기준, 특약 제외)</p>
+    <table border="1" cellpadding="10" cellspacing="0" style="width:100%;margin:20px 0;">
+      <thead style="background:#004d99;color:#fff;">
+        <tr>
+          <th>나이대</th>
+          <th>성별</th>
+          <th>비갱신형 평균 비용 (원)</th>
+          <th>갱신형 평균 비용 (원)</th>
+          <th>주요 고려사항</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>20대</td>
+          <td>남성/여성</td>
+          <td>30,000 ~ 50,000</td>
+          <td>15,000 ~ 25,000</td>
+          <td>비갱신형 가입 최적 시기</td>
+        </tr>
+        <tr>
+          <td>30대</td>
+          <td>남성/여성</td>
+          <td>40,000 ~ 70,000</td>
+          <td>20,000 ~ 35,000</td>
+          <td>가족력 고려, 보장 범위 확대 고려</td>
+        </tr>
+        <tr>
+          <td>40대</td>
+          <td>남성/여성</td>
+          <td>60,000 ~ 110,000</td>
+          <td>30,000 ~ 50,000</td>
+          <td>갱신형 선택 시 갱신 보험료 부담 확인</td>
+        </tr>
+        <tr>
+          <td>50대</td>
+          <td>남성/여성</td>
+          <td>90,000 ~ 150,000</td>
+          <td>45,000 ~ 70,000</td>
+          <td>유병자 보험 고려 및 보장 축소 고려</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="6-2">나에게 맞는 암보험 견적 요청</h3>
+    <div class="inquiry-form">
+      <h3>무료 견적 상담 신청 (2026년 최신 버전)</h3>
+      <p>아래 정보를 입력하시면, <strong>암보험 전문가</strong>가 <strong class="year-highlight">2026년 최신 암보험 상품</strong>을 바탕으로 개인별 <strong>암보험 비용</strong>을 분석해드립니다. 나이, 성별, 원하는 보장 범위 등을 고려하여 <strong class="year-highlight">가장 저렴한 곳</strong>을 찾아드립니다.</p>
+      <form action="#" method="post">
+        <label for="name">이름:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="age">나이:</label>
+        <input type="text" id="age" name="age" required>
+
+        <label for="gender">성별:</label>
+        <select id="gender" name="gender" required>
+          <option value="">선택</option>
+          <option value="male">남성</option>
+          <option value="female">여성</option>
+        </select>
+
+        <label for="phone">연락처:</label>
+        <input type="text" id="phone" name="phone" required>
+
+        <label for="type">원하는 암보험 유형 (비갱신형 / 갱신형):</label>
+        <select id="type" name="type" required>
+          <option value="">선택</option>
+          <option value="nonrenewal">비갱신형</option>
+          <option value="renewal">갱신형</option>
+          <option value="undecided">미정 (추천받고 싶습니다)</option>
+        </select>
+
+        <input type="submit" value="무료 견적 상담 신청하기">
+      </form>
+    </div>
+
+    <div class="note">
+      <p>*위의 <strong>암보험 비용</strong>은 평균 <strong>예상 금액</strong>이며, 개인의 건강 상태나 특약 가입 여부에 따라 실제 <strong>암보험료</strong>는 달라질 수 있습니다. 정확한 <strong>암보험 견적</strong>은 전문가 상담을 통해 확인하시기 바랍니다.</p>
+      <p>**본 콘텐츠는 암보험 정보를 제공하기 위한 목적으로 작성되었으며, 특정 상품 가입을 강요하지 않습니다. (금융소비자보호법 준수)</p>
+    </div>
+
+    <a href="#top" class="cta-button">나에게 맞는 암보험 견적 즉시 비교하기</a>
+
+    <h2 id="7">7. 암보험 관련 신뢰성 있는 외부 사이트 참고 자료</h2>
+    <p>보다 정확하고 객관적인 정보를 원하신다면, 아래 공인된 기관의 자료를 참고하시기 바랍니다.</p>
+    <ul>
+      <li><a href="https://www.fss.or.kr" target="_blank">금융감독원 (FSS)</a>: 보험 가입 시 유의사항 및 소비자 민원 정보 제공</li>
+      <li><a href="https://www.nhis.or.kr" target="_blank">국민건강보험공단</a>: 건강보험 보장 범위 및 암 치료비 지원 정책 안내</li>
+      <li><a href="https://www.kidi.or.kr" target="_blank">보험연구원</a>: 보험 시장 동향 및 통계 자료 제공</li>
+      <li><a href="https://namu.wiki/w/%EC%95%94%EB%B3%B4%ED%97%98" target="_blank">나무위키 - 암보험</a>: 암보험 관련 일반적인 정보 및 특징 정리</li>
+      <li><a href="https://www.bokunews.com" target="_blank">보건복지부 (복지뉴스)</a>: 보건 정책 및 암 관련 통계 제공</li>
+    </ul>
+
+    <p style="text-align: right; font-size: 0.9em; color: #888; margin-top: 50px;">Copyright &copy; 2026. All Rights Reserved.</p>
+  </div>
+
+  
